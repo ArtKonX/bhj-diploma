@@ -11,18 +11,14 @@ class TransactionsPage {
    * через registerEvents()
    * */
   constructor(element) {
-    try {
-      if (!element) {
-        throw new Error('Элемента не существует');
-      }
 
-      this.element = element;
-      this.lastOptions = '';
-      this.registerEvents();
-
-    } catch (error) {
-      console.log(error);
+    if (!element) {
+      throw new Error('Элемента не существует');
     }
+
+    this.element = element;
+    this.lastOptions = '';
+    this.registerEvents();
   }
 
   /**
@@ -40,14 +36,15 @@ class TransactionsPage {
    * */
   registerEvents() {
     this.element.addEventListener('click', (event) => {
-      if (event.target.classList.contains('remove-account')) {
-        this.removeAccount();
-      }
+      const removeAccountButton = event.target.closest('.remove-account');
+      const removeTransactionButton = event.target.closest('.transaction__remove');
 
-      if (event.target.classList.contains('transaction__remove')) {
-        this.removeTransaction(event.target.dataset.id);
+      if (removeAccountButton) {
+        this.removeAccount();
+      } else if (removeTransactionButton) {
+        this.removeTransaction(removeTransactionButton.dataset.id);
       }
-    })
+    });
   }
 
   /**

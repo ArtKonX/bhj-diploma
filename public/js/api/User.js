@@ -28,7 +28,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : undefined;
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   /**
@@ -37,7 +37,7 @@ class User {
    * */
   static fetch(callback) {
 
-    const options = {
+    createRequest({
       url: this.URL + '/current',
       method: 'GET',
       responseType: 'json',
@@ -50,9 +50,7 @@ class User {
         }
         callback(err, response);
       }
-    };
-
-    createRequest(options);
+    });
   }
 
   /**
@@ -63,7 +61,7 @@ class User {
    * */
   static login(data, callback) {
 
-    const options = {
+    createRequest({
       url: this.URL + '/login',
       method: 'POST',
       responseType: 'json',
@@ -74,9 +72,7 @@ class User {
         }
         callback(err, response);
       }
-    };
-
-    createRequest(options);
+    });
   }
 
   /**
@@ -87,7 +83,7 @@ class User {
    * */
   static register(data, callback) {
 
-    const options = {
+    createRequest({
       url: this.URL + '/register',
       method: 'POST',
       responseType: 'json',
@@ -98,9 +94,7 @@ class User {
         }
         callback(err, response);
       }
-    };
-
-    createRequest(options);
+    });
   }
 
   /**
@@ -109,7 +103,7 @@ class User {
    * */
   static logout(callback) {
 
-    const options = {
+    createRequest({
       url: this.URL + '/logout',
       method: 'POST',
       responseType: 'json',
@@ -119,8 +113,6 @@ class User {
         }
         callback(err, response);
       }
-    };
-
-    createRequest(options);
+    });
   }
 };

@@ -12,17 +12,13 @@ class TransactionsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element) {
-    try {
-      if (!element) {
-        throw new Error('Элемента не существует');
-      }
 
-      this.element = element;
-      this.registerEvents();
-
-    } catch (error) {
-      console.log(error);
+    if (!element) {
+      throw new Error('Элемента не существует');
     }
+
+    this.element = element;
+    this.registerEvents();
   }
 
   /**
@@ -41,5 +37,6 @@ class TransactionsWidget {
         App.getModal('newExpense').open();
       }
     }
-  )}
+    )
+  }
 }

@@ -15,18 +15,13 @@ class AccountsWidget {
    * */
   constructor(element) {
 
-    try {
-      if (!element) {
-        throw new Error('Элемента не существует');
-      }
-
-      this.element = element;
-      this.registerEvents();
-      this.update();
-
-    } catch (error) {
-      console.log(error);
+    if (!element) {
+      throw new Error('Элемента не существует');
     }
+
+    this.element = element;
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -112,7 +107,7 @@ class AccountsWidget {
     let itemTemplate = '';
 
     item.forEach(elem => {
-      itemTemplate += `<li class="active account" data-id=${elem.id}>
+      itemTemplate += `<li class="account" data-id=${elem.id}>
       <a href="#">
           <span>${elem.name}</span> /
           <span>${elem.sum} ₽</span>

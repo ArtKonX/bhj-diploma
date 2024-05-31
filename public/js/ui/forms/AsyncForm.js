@@ -13,17 +13,13 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    try {
-      if (!element) {
-        throw new Error('Элемента не существует');
-      }
 
-      this.element = element;
-      this.registerEvents();
-
-    } catch (error) {
-      console.log(error);
+    if (!element) {
+      throw new Error('Элемента не существует');
     }
+
+    this.element = element;
+    this.registerEvents();
   }
 
   /**
@@ -45,18 +41,9 @@ class AsyncForm {
    * }
    * */
   getData() {
-    const dataObj = {};
+
     const formData = new FormData(this.element);
-    const entries = formData.entries();
-
-    for (let elem of entries) {
-      const key = elem[0];
-      const value = elem[1];
-
-      dataObj[key] = value;
-    }
-
-    return dataObj;
+    return Object.fromEntries(formData.entries());
   }
 
   onSubmit(options) {

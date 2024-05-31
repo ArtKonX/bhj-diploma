@@ -42,13 +42,12 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static remove(data, callback) {
-    const options = {
+    
+    createRequest({
       url: this.URL,
       data: data,
       method: 'DELETE',
       callback: callback
-    };
-
-    createRequest(options);
+    });
   }
 };

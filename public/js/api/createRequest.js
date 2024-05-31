@@ -21,10 +21,8 @@ const createRequest = (options = {}) => {
     }
 
     xhr.onload = () => {
-        if (xhr.status == 200) {
-            const response = xhr.response;
-            options.callback(null, response);
-        }
+        const response = xhr.response;
+        options.callback(null, response);
     }
 
     xhr.send(method == 'GET' ? null : formData);

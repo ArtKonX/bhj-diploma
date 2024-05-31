@@ -25,9 +25,11 @@ class CreateTransactionForm extends AsyncForm {
       const accountsSelect = this.element.querySelector('.accounts-select');
       let accountsTemplate = '';
 
-      data.forEach(obj => {
-        accountsTemplate += `<option value="${obj.id}">${obj.name}</option>`
-      });
+      if (data) {
+        data.forEach(obj => {
+          accountsTemplate += `<option value="${obj.id}">${obj.name}</option>`
+        });
+      }
 
       accountsSelect.innerHTML = accountsTemplate;
     })
@@ -45,7 +47,6 @@ class CreateTransactionForm extends AsyncForm {
       App.getModal('newIncome').close();
       App.getModal('newExpense').close();
       App.update();
-
     })
   }
 }
